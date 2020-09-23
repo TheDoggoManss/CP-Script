@@ -8,6 +8,11 @@ if [ "$(id -u)" != 0 ]; then
    exit 1
 fi
 
+#Setup folders
+mkdir -p ~/Desktop/Script/
+
+
+
 ###This is where all of the functions will be, the menu will be at the bottom.
 
 
@@ -26,14 +31,14 @@ nmapscan() {
 
     read answer
         if [ $answer == 1 ]; then
-            nmap –F 192.168.0.1 >> /media/output/networkports.txt
+            nmap –F 192.168.0.1 >> ~/Desktop/Script/networkports.txt
             clear
             echo "Scan Complete! You can find the ports in /media/output/networkports.txt"
             mainmenu
         fi
 
         if [ $answer == 2 ]; then
-            nmap –p- 192.168.0.1 >> /media/output/networkports.txt
+            nmap –p 192.168.0.1 >> ~/Desktop/Script/networkports.txt
             clear
             echo "Scan Complete! You can find the ports in /media/output/networkports.txt"
             mainmenu
@@ -64,6 +69,13 @@ firewall() {
         mainmenu
     fi
 
+}
+#Uninstall nmap
+unnmap() {
+    apt-get remove nmap
+    clear
+    echo "Successfuly uninstalled nmap!"
+    mainmenu
 }
 #Securing apache
 sapache() {
@@ -138,7 +150,8 @@ mainmenu() {
             Please select:
             1: Install nmap
             2: Scan ports with nmap
-            3: Check Firewall"""
+            3: Check Firewall
+            4: Uninstall nmap"""
             read answer
                 if [ $answer == 1 ]; then
                     nmap
@@ -146,6 +159,8 @@ mainmenu() {
                     nmapscan
                 elif [ $answer == 3 ]; then
                     firewall
+                elif [ $awnser == 4 ]; then
+                    unnmap
                 else
                     echo "Please input in a number listed."
                     clear

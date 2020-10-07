@@ -184,7 +184,7 @@ insclamav(){
     freshclam
     echo "Restarting ClamAV service."
     systemctl start clamav-freshclam
-
+    mainmenu
 }
 #Uninstall nmap
 unnmap() {

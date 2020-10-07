@@ -311,7 +311,7 @@ filesearch(){
             mainmenu
         else
             echo "Y or N"
-            telnet
+            filesearch
         fi
 }
 #Looks at user input file and adds users that are not listed.
@@ -471,7 +471,8 @@ mainmenu() {
                 if [ $answer == 1 ]; then
                     filesearch
                 elif [ $answer == 2 ]; then
-                    echo"Filler"
+                    echo"Please manualy go through files."
+		    mainmenu
                 elif [ $answer == 3 ]; then
                     echo"Filler"
                 elif [ $answer == 4 ]; then
